@@ -167,15 +167,18 @@ function throttle(func, limit) {
 
 // ========== FETCH WRAPPER ==========
 async function apiCall(endpoint, options = {}) {
-    const baseUrl = window.location.hostname === 'localhost' 
+    const baseUrl = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
         ? '' 
-        : 'https://bts-sisr-portfolio-api.onrender.com'; // Vérifiez que ce nom sera celui sur Render
+        : ''; // En Docker/Apache, le chemin relatif est préférable
 
-    const defaultOptions = {
-        headers: {
+    const defaultOptions = {};
+    
+    // On n'ajoute le Content-Type JSON que si ce n'est pas un FormData (upload de fichier)
+    if (!(options.body instanceof FormData)) {
+        defaultOptions.headers = {
             'Content-Type': 'application/json'
-        }
-    };
+        };
+    }
 
     try {
         const response = await fetch(baseUrl + endpoint, { ...defaultOptions, ...options });

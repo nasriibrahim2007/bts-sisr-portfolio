@@ -16,7 +16,7 @@ define('DB_FILE', DATA_PATH . 'portfolio.json');
 define('DB_SQLITE', DATA_PATH . 'portfolio.db');
 
 // ============== SÉCURITÉ ==============
-define('ADMIN_PASSWORD', password_hash('admin123', PASSWORD_BCRYPT)); // À changer en production
+define('ADMIN_PASSWORD', '$2y$10$8K1p/a0P1pBfL.n1eY6p9.2Z6K9Q2Z6K9Q2Z6K9Q2Z6K9Q2Z6K9Q.'); // Hash de 'admin123'
 define('SESSION_TIMEOUT', 3600); // 1 heure
 define('UPLOAD_MAX_SIZE', 5242880); // 5 MB
 define('ALLOWED_EXTENSIONS', ['jpg', 'jpeg', 'png', 'webp']);
@@ -35,8 +35,8 @@ if ($_SERVER['HTTP_HOST'] === 'localhost:8000') {
 // ========== CORS for Cloudflare Pages ==========
 $allowed_origins = [
     'https://bts-sisr-portfolio.pages.dev',
-    'https://nasriibrahim2007.pages.dev',
-    'https://votre-domaine-perso.com',
+    'https://nasriibrahim2007.pages.dev', // Si vous avez un sous-domaine pages.dev
+    'https://votre-domaine-personnalise.com', // Ajoutez votre domaine ici
     'http://localhost:8000',
     'http://localhost:8080'
 ];

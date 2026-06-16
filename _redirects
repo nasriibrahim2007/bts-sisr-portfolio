@@ -1,5 +1,5 @@
 # Rediriger les appels API vers le backend Render
 /api/*  https://bts-sisr-portfolio-api.onrender.com/api/:splat  200
 
-# Gérer les routes dynamiques
-/* /index.html 200
+# Gérer les routes dynamiques et rediriger vers l'index
+/* /index.php 200
