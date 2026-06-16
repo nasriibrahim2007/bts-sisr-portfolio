@@ -6,47 +6,46 @@ require_once '../config.php';
 require_once '../includes/database.php';
 
 header('Content-Type: application/json');
-
 requireAdminLogin();
-
-if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    jsonResponse(false, 'Méthode non autorisée');
-}
 
 $action = $_POST['action'] ?? '';
 
 try {
     if ($action === 'add') {
+        $imagePath = '';
+        if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
+            $ext = strtolower(pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION));
+            if (in_array($ext, ALLOWED_EXTENSIONS)) {
+                $filename = uniqid('project_') . '.' . $ext;
+                if (move_uploaded_file($_FILES['image']['tmp_name'], UPLOAD_PATH . $filename)) {
+                    $imagePath = '/assets/images/uploads/' . $filename;
+                }
+            }
+        }
+
+        $technologies = isset($_POST['technologies']) ? array_map('trim', explode(',', $_POST['technologies'])) : [];
+
         $project = [
             'title' => sanitize($_POST['title']),
             'description' => sanitize($_POST['description']),
-            'technologies' => json_encode(json_decode($_POST['technologies'] ?? '[]')),
+            'technologies' => $technologies,
             'link' => sanitize($_POST['link'] ?? ''),
-            'image' => sanitize($_POST['image'] ?? '')
+            'image' => $imagePath
         ];
+        
         $result = $db->add('projects', $project);
         jsonResponse(true, 'Projet ajouté', $result);
     }
-    elseif ($action === 'update') {
+    
+    if ($action === 'delete') {
         $id = sanitize($_POST['id']);
-        $project = [
-            'title' => sanitize($_POST['title']),
-            'description' => sanitize($_POST['description']),
-            'technologies' => json_encode(json_decode($_POST['technologies'] ?? '[]')),
-            'link' => sanitize($_POST['link'] ?? ''),
-            'image' => sanitize($_POST['image'] ?? '')
-        ];
-        $result = $db->update('projects', $id, $project);
-        jsonResponse($result !== null, $result ? 'Projet mis à jour' : 'Erreur', $result);
-    }
-    elseif ($action === 'delete') {
-        $id = sanitize($_POST['id']);
+        // Optionnel : supprimer le fichier image physique ici
         $result = $db->delete('projects', $id);
         jsonResponse($result, 'Projet supprimé');
     }
-    else {
-        jsonResponse(false, 'Action inconnue');
-    }
+
+    jsonResponse(false, 'Action non reconnue');
+
 } catch (Exception $e) {
     jsonResponse(false, 'Erreur : ' . $e->getMessage());
 }

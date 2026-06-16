@@ -16,7 +16,7 @@ define('DB_FILE', DATA_PATH . 'portfolio.json');
 define('DB_SQLITE', DATA_PATH . 'portfolio.db');
 
 // ============== SÉCURITÉ ==============
-define('ADMIN_PASSWORD', '$2y$10$mC7G0Ot8STp5SM3Ot29uUuP99rnPi767m5T6JZ7PPmE6W/4VqL962'); 
+define('ADMIN_PASSWORD', '$2y$10$mC7G0Ot8STp5SM3Ot29uUuP99rnPi767m5T6JZ7PPmE6W/4VqL962'); // Hash valide pour admin123
 define('SESSION_TIMEOUT', 3600); // 1 heure
 define('UPLOAD_MAX_SIZE', 5242880); // 5 MB
 define('ALLOWED_EXTENSIONS', ['jpg', 'jpeg', 'png', 'webp']);

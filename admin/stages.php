@@ -141,8 +141,7 @@ $stages = $db->get('stages');
             const formData = new FormData();
             formData.append('action', 'delete');
             formData.append('id', id);
-            const resp = await fetch('/api/stages.php', { method: 'POST', body: formData });
-            const data = await resp.json();
+            const data = await apiCall('/api/stages.php', { method: 'POST', body: formData });
             if(data.success) location.reload();
         }
 
