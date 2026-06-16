@@ -17,14 +17,25 @@ $action = $_POST['action'] ?? '';
 
 try {
     if ($action === 'add') {
+        $imagePath = '';
+        if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
+            $ext = strtolower(pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION));
+            if (in_array($ext, ALLOWED_EXTENSIONS)) {
+                $filename = uniqid('stage_') . '.' . $ext;
+                if (move_uploaded_file($_FILES['image']['tmp_name'], UPLOAD_PATH . $filename)) {
+                    $imagePath = '/assets/images/uploads/' . $filename;
+                }
+            }
+        }
+
         $stage = [
             'title' => sanitize($_POST['title']),
             'company' => sanitize($_POST['company']),
             'start_date' => sanitize($_POST['start_date']),
             'end_date' => sanitize($_POST['end_date']),
             'description' => sanitize($_POST['description']),
-            'skills' => json_encode(json_decode($_POST['skills'] ?? '[]')),
-            'image' => sanitize($_POST['image'] ?? '')
+            'skills' => [],
+            'image' => $imagePath
         ];
         $result = $db->add('stages', $stage);
         jsonResponse(true, 'Stage ajouté', $result);

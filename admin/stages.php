@@ -18,12 +18,13 @@ $stages = $db->get('stages');
     <style>
         .admin-container { display: grid; grid-template-columns: 250px 1fr; min-height: 100vh; background-color: var(--color-gray-100); }
         .admin-sidebar { background-color: var(--color-primary); color: var(--color-white); padding: var(--spacing-6); position: sticky; top: 0; height: 100vh; overflow-y: auto; }
-        .admin-sidebar h2 { color: var(--color-white); margin-bottom: var(--spacing-6); font-size: var(--font-size-lg); }
+        .admin-sidebar h2 { color: var(--color-white); margin-bottom: var(--spacing-4); font-size: var(--font-size-lg); }
         .admin-menu { list-style: none; padding: 0; margin: 0; }
         .admin-menu li { margin-bottom: var(--spacing-3); }
         .admin-menu a { display: flex; align-items: center; gap: var(--spacing-3); color: var(--color-gray-300); padding: var(--spacing-3) var(--spacing-4); border-radius: var(--border-radius-base); transition: all var(--transition-fast); }
         .admin-menu a:hover, .admin-menu a.active { background-color: var(--color-accent); color: var(--color-gray-900); }
-        .back-link { margin-bottom: var(--spacing-6); display: block; color: var(--color-accent); font-weight: 600; text-decoration: none; font-size: 14px; }
+        .back-link { margin-bottom: var(--spacing-8); display: block; color: var(--color-accent); font-weight: 600; text-decoration: none; font-size: 14px; opacity: 0.8; }
+        .back-link:hover { opacity: 1; text-decoration: underline; }
         .admin-content { padding: var(--spacing-6); }
         
         /* Grille de cartes graphiques */
@@ -42,7 +43,7 @@ $stages = $db->get('stages');
 <body>
     <div class="admin-container">
         <aside class="admin-sidebar">
-            <h2><i class="fas fa-cog"></i> Admin</h2>
+            <h2><i class="fas fa-user-shield"></i> Administration</h2>
             <a href="/" class="back-link"><i class="fas fa-arrow-left"></i> Retour au site</a>
             <ul class="admin-menu">
                 <li><a href="/admin/dashboard.php"><i class="fas fa-chart-line"></i> Dashboard</a></li>
@@ -124,11 +125,15 @@ $stages = $db->get('stages');
 
         document.getElementById('stageForm').addEventListener('submit', async (e) => {
             e.preventDefault();
-            const formData = new FormData(e.target);
-            const resp = await fetch('/api/stages.php', { method: 'POST', body: formData });
-            const data = await resp.json();
-            if(data.success) location.reload();
-            else alert(data.message);
+            try {
+                const formData = new FormData(e.target);
+                const data = await apiCall('/api/stages.php', { method: 'POST', body: formData });
+                if(data.success) {
+                    location.reload();
+                } else {
+                    alert(data.message);
+                }
+            } catch (err) { alert("Erreur lors de l'enregistrement"); }
         });
 
         async function deleteStage(id) {
