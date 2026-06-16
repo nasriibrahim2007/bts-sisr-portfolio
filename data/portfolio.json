@@ -1,0 +1,108 @@
+{
+  "profile": {
+    "name": "Votre Nom",
+    "title": "Étudiant BTS SIO SISR",
+    "email": "votre.email@example.com",
+    "phone": "+33 6 XX XX XX XX",
+    "linkedin": "https://linkedin.com/in/votre-profile",
+    "github": "https://github.com/votreusername",
+    "description": "Étudiant en première année de BTS Services Informatiques aux Organisations, spécialité Solutions d'Infrastructure, Systèmes et Réseaux (SISR). Passionné par les technologies, la virtualisation et la cybersécurité.",
+    "avatar": "default-avatar.jpg"
+  },
+  "skills": [
+    {
+      "id": "skill-001",
+      "name": "Windows Server",
+      "category": "Infrastructure",
+      "level": "Intermédiaire",
+      "icon": "fas fa-server",
+      "description": "Installation, configuration et gestion des serveurs Windows",
+      "created_at": "2024-01-15 10:30:00"
+    },
+    {
+      "id": "skill-002",
+      "name": "Linux (Ubuntu/Debian)",
+      "category": "Infrastructure",
+      "level": "Intermédiaire",
+      "icon": "fas fa-linux",
+      "description": "Commandes courantes, administration système",
+      "created_at": "2024-01-15 10:35:00"
+    },
+    {
+      "id": "skill-003",
+      "name": "Virtualisation VMware",
+      "category": "Infrastructure",
+      "level": "Débutant",
+      "icon": "fas fa-cube",
+      "description": "Création et gestion de machines virtuelles",
+      "created_at": "2024-01-15 10:40:00"
+    },
+    {
+      "id": "skill-004",
+      "name": "Cisco CCNA",
+      "category": "Réseaux",
+      "level": "Débutant",
+      "icon": "fas fa-network-wired",
+      "description": "Configuration des routeurs et commutateurs",
+      "created_at": "2024-01-15 10:45:00"
+    },
+    {
+      "id": "skill-005",
+      "name": "Sécurité Réseau",
+      "category": "Sécurité",
+      "level": "Débutant",
+      "icon": "fas fa-shield-alt",
+      "description": "Firewall, VPN, authentification",
+      "created_at": "2024-01-15 10:50:00"
+    },
+    {
+      "id": "skill-006",
+      "name": "Active Directory",
+      "category": "Infrastructure",
+      "level": "Intermédiaire",
+      "icon": "fas fa-users",
+      "description": "Gestion des utilisateurs et des groupes",
+      "created_at": "2024-01-15 10:55:00"
+    }
+  ],
+  "stages": [
+    {
+      "id": "stage-001",
+      "title": "Technicien Support Informatique",
+      "company": "Exemple Entreprise SARL",
+      "start_date": "2023-06-01",
+      "end_date": "2023-08-31",
+      "description": "Assistance utilisateurs, maintenance des postes de travail, gestion du parc informatique, support ticketing",
+      "skills": "[\"Help Desk\", \"Windows 10\", \"Ticketing\"]",
+      "image": "",
+      "created_at": "2024-01-15 11:00:00"
+    }
+  ],
+  "projects": [
+    {
+      "id": "project-001",
+      "title": "Lab Réseau Cisco",
+      "description": "Simulation d'une infrastructure réseau complète avec 3 routeurs et 2 commutateurs. Configuration du protocole OSPF et VLAN.",
+      "technologies": "[\"Cisco Packet Tracer\", \"OSPF\", \"VLAN\"]",
+      "link": "https://github.com",
+      "image": "",
+      "created_at": "2024-01-15 11:05:00"
+    },
+    {
+      "id": "project-002",
+      "title": "Virtualisation d'Infrastructure",
+      "description": "Mise en place d'une infrastructure virtualisée avec VMware ESXi, incluant 5 machines virtuelles (serveurs, stations client).",
+      "technologies": "[\"VMware ESXi\", \"Virtual Machines\", \"Storage\"]",
+      "link": "",
+      "image": "",
+      "created_at": "2024-01-15 11:10:00"
+    }
+  ],
+  "menu": {
+    "home": true,
+    "skills": true,
+    "stages": true,
+    "projects": true,
+    "contact": true
+  }
+}

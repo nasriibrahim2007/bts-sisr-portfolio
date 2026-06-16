@@ -1,0 +1,47 @@
+# Dépendances
+node_modules/
+vendor/
+
+# Fichiers système
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
+# Variables d'environnement
+.env
+.env.local
+.env.*.local
+
+# Cache
+*.cache
+.cache/
+
+# Uploads (à ignorer en dev, utiliser Git LFS en production)
+assets/images/uploads/*
+!assets/images/uploads/.gitkeep
+
+# Logs
+*.log
+data/*.log
+
+# Sessions PHP
+session/
+
+# Fichiers temporaires
+tmp/
+temp/
+
+# IDE
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# OS
+.DS_Store
+.AppleDouble
+.LSOverride
