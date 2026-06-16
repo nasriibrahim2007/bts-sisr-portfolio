@@ -16,7 +16,7 @@ define('DB_FILE', DATA_PATH . 'portfolio.json');
 define('DB_SQLITE', DATA_PATH . 'portfolio.db');
 
 // ============== SÉCURITÉ ==============
-define('ADMIN_PASSWORD', '$2y$10$mC7G0Ot8STp5SM3Ot29uUuP99rnPi767m5T6JZ7PPmE6W/4VqL962'); // Hash de 'admin123'
+define('ADMIN_PASSWORD', '$2y$10$mC7G0Ot8STp5SM3Ot29uUuP99rnPi767m5T6JZ7PPmE6W/4VqL962'); 
 define('SESSION_TIMEOUT', 3600); // 1 heure
 define('UPLOAD_MAX_SIZE', 5242880); // 5 MB
 define('ALLOWED_EXTENSIONS', ['jpg', 'jpeg', 'png', 'webp']);
@@ -24,29 +24,13 @@ define('ALLOWED_EXTENSIONS', ['jpg', 'jpeg', 'png', 'webp']);
 // ============== TIMEZONE ==============
 date_default_timezone_set('Europe/Paris');
 
-// ========== API Configuration for Cloudflare ==========
-if ($_SERVER['HTTP_HOST'] === 'localhost:8000') {
-    define('API_URL', 'http://localhost:8000');
-} else {
-    // Utilisez l'URL de votre service Render.com ici
-    define('API_URL', 'https://bts-sisr-portfolio-api.onrender.com');
-}
+// ========== Configuration API (Local/Render) ==========
+// Puisque tout est sur Render, on utilise des chemins relatifs
+define('API_URL', ''); 
 
-// ========== CORS for Cloudflare Pages ==========
-$allowed_origins = [
-    'https://bts-sisr-portfolio.pages.dev',
-    'https://nasriibrahim2007.pages.dev', // Si vous avez un sous-domaine pages.dev
-    'https://votre-domaine-personnalise.com', // Ajoutez votre domaine ici
-    'http://localhost:8000',
-    'http://localhost:8080'
-];
-
-$origin = $_SERVER['HTTP_ORIGIN'] ?? '';
-if (in_array($origin, $allowed_origins)) {
-    header("Access-Control-Allow-Origin: $origin");
-}
-header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
-header('Access-Control-Allow-Headers: Content-Type, Authorization');
+// Désactivation CORS car nous sommes sur le même domaine
+header('Access-Control-Allow-Origin: ' . SITE_URL);
+header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
 
 // ============== DÉMARRAGE SESSION ==============
 if (session_status() === PHP_SESSION_NONE) {

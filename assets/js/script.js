@@ -167,9 +167,8 @@ function throttle(func, limit) {
 
 // ========== FETCH WRAPPER ==========
 async function apiCall(endpoint, options = {}) {
-    const baseUrl = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
-        ? '' 
-        : ''; // En Docker/Apache, le chemin relatif est préférable
+    // Utilisation systématique de chemins relatifs pour Render
+    const baseUrl = ''; 
 
     const defaultOptions = {};
     
