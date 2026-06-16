@@ -89,6 +89,10 @@ if (isAdminLogged()) {
 </head>
 <body>
     <div class="login-container">
+        <a href="/" style="display: inline-block; margin-bottom: 20px; color: var(--color-primary); text-decoration: none;">
+            <i class="fas fa-arrow-left"></i> Retour à l'accueil
+        </a>
+
         <h1><i class="fas fa-lock"></i> Authentification</h1>
         
         <div id="errorMessage" class="error-message"></div>
